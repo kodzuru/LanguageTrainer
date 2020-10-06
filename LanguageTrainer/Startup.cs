@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using LanguageTrainer.Services;
+using LanguageTrainer.Services.TelegramBot;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace LanguageTrainer
 {
@@ -25,10 +21,13 @@ namespace LanguageTrainer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDatabase(Configuration);
+            services.AddBot();
+            services.AddCommands();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ITelegramBotService bot)
         {
             if (env.IsDevelopment())
             {
@@ -43,6 +42,7 @@ namespace LanguageTrainer
             {
                 endpoints.MapControllers();
             });
+            bot.Start();
         }
     }
 }
