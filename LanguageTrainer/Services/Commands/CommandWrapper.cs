@@ -18,15 +18,12 @@ namespace LanguageTrainer.Services.Commands
         {
             this.Mapper = mapper;
             RepositoryWrapper = repositoryWrapper;
-            InlineCommands = new List<InlineCommand>();
-            KeyboardCommands = new List<KeyboardCommand>();
             RegistrateAllCommands();
         }
-        public List<InlineCommand> InlineCommands { get; set; }
-        public List<KeyboardCommand> KeyboardCommands { get; set; }
+        public List<CommandBase> Commands { get; set; } = new List<CommandBase>();
         private void RegistrateAllCommands()
         {
-            KeyboardCommands.Add(new StartCommand(
+            Commands.Add(new StartCommand(
                 new CommandInfo()
                 {
                     Name = $"{BotSettings.Start}",
