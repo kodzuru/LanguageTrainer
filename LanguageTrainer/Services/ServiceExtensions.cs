@@ -16,15 +16,11 @@ namespace LanguageTrainer.Services
             var connectionString = config["ConnectionStrings:MSSQLConnection_development"];
             var assemblyName = typeof(RepositoryContext).Namespace;
             services.AddDbContext<RepositoryContext>(x => x.UseSqlServer(connectionString, y => y.MigrationsAssembly(assemblyName)));
-            services.AddTransient<IRepositoryWrapper, RepositoryWrapper>();
-        }
-        public static void AddBot(this IServiceCollection services)
-        {
-            services.AddTransient<ITelegramBotService, TelegramBotService>();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
         public static void AddCommands(this IServiceCollection services)
         {
-            services.AddScoped<ICommandWrapper, CommandWrapper>();
+            services.AddTransient<ICommandWrapper, CommandWrapper>();
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using System;
 
 namespace LanguageTrainer
@@ -22,15 +23,23 @@ namespace LanguageTrainer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x => {
+                x.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
             services.AddDatabase(Configuration);
-            services.AddBot();
+
+            services.AddSingleton<IBotService, BotService>();
+
+            services.AddScoped<IUpdateService, UpdateService>();
+
+
             services.AddCommands();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ITelegramBotService bot)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IBotService bot)
         {
             if (env.IsDevelopment())
             {
@@ -38,14 +47,14 @@ namespace LanguageTrainer
             }
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-            bot.Start();
+            bot.SetWebHookAsync();
         }
     }
 }

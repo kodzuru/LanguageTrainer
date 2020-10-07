@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LanguageTrainer.Entities.DTO;
+using LanguageTrainer.Entities.Models;
 
 namespace LanguageTrainer.Profiles
 {
@@ -13,6 +14,7 @@ namespace LanguageTrainer.Profiles
                 .ForMember("LastName", x => x.MapFrom(c => c.From.LastName))
                 .ForMember("TelegramUserId", x => x.MapFrom(c => c.From.Id))
                 .ForMember("StartDateTime", x => x.MapFrom(c => c.Date));
+            CreateMap<CreateOrUpdateUserDTO, User>();
         }
     }
 }

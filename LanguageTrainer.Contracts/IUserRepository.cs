@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using LanguageTrainer.Entities.Models;
 
 namespace LanguageTrainer.Contracts
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepositoryBase<User>
     {
 
     }

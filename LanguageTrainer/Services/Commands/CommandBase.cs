@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace LanguageTrainer.Services.Commands
 {
@@ -14,6 +16,7 @@ namespace LanguageTrainer.Services.Commands
             this.Info.Name = info.Name;
             this.Info.CommandResponsibility = info.CommandResponsibility;
         }
+        public virtual async Task Execute(Message message, ITelegramBotClient botClient) { }
         public bool Contains(string command)
         {
             return command.Contains(this.Info.Name);
