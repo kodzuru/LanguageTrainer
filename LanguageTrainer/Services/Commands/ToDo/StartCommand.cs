@@ -37,22 +37,22 @@ namespace LanguageTrainer.Services.Commands.ToDo
 
 
             var userDTO = Mapper.Map<Message, CreateOrUpdateUserDTO>(message);
-            //if (Repository.User.CreateOrUpdateUser(userDTO))
-            //{
-            //    await client.SendTextMessageAsync(
-            //        chatId: message.Chat.Id,
-            //        text: "registration SUCCESSFULL",
-            //        replyToMessageId: message.MessageId
-            //    );
-            //}
-            //else
-            //{
-            //    await client.SendTextMessageAsync(
-            //        chatId: message.Chat.Id,
-            //         text: "User already exist, restoration successfull",
-            //        replyToMessageId: message.MessageId
-            //    );
-            //}
+            if (Repository.User.CreateOrUpdateUser(userDTO))
+            {
+                await client.SendTextMessageAsync(
+                    chatId: message.Chat.Id,
+                    text: "registration SUCCESSFULL",
+                    replyToMessageId: message.MessageId
+                );
+            }
+            else
+            {
+                await client.SendTextMessageAsync(
+                    chatId: message.Chat.Id,
+                     text: "User already exist, restoration successfull",
+                    replyToMessageId: message.MessageId
+                );
+            }
 
         }
         async void SendReplyKeyboard(long id, ITelegramBotClient client)

@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using LanguageTrainer.Entities;
 using LanguageTrainer.Services.TelegramBot;
 using LanguageTrainer.Services.Commands;
+using LanguageTrainer.Contracts;
+using LanguageTrainer.Repository;
 
 namespace LanguageTrainer.Services
 {
@@ -14,6 +16,7 @@ namespace LanguageTrainer.Services
             var connectionString = config["ConnectionStrings:MSSQLConnection_development"];
             var assemblyName = typeof(RepositoryContext).Namespace;
             services.AddDbContext<RepositoryContext>(x => x.UseSqlServer(connectionString, y => y.MigrationsAssembly(assemblyName)));
+            services.AddTransient<IRepositoryWrapper, RepositoryWrapper>();
         }
         public static void AddBot(this IServiceCollection services)
         {
@@ -21,7 +24,7 @@ namespace LanguageTrainer.Services
         }
         public static void AddCommands(this IServiceCollection services)
         {
-            services.AddTransient<ICommandWrapper, CommandWrapper>();
+            services.AddScoped<ICommandWrapper, CommandWrapper>();
         }
     }
 }

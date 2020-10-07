@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LanguageTrainer.Services.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +12,12 @@ namespace LanguageTrainer.Services.TelegramBot
     public class TelegramBotService : ITelegramBotService
     {
         ITelegramBotClient botClient;
+        public ICommandWrapper Commands { get; }
 
+        public TelegramBotService(ICommandWrapper commands)
+        {
+            this.Commands = commands;
+        }
         public void Start()
         {
             botClient = new TelegramBotClient($"{BotSettings.ApiKey}");
