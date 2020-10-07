@@ -27,15 +27,9 @@ namespace LanguageTrainer
                 x.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
             services.AddDatabase(Configuration);
-
-            services.AddSingleton<IBotService, BotService>();
-
-            services.AddScoped<IUpdateService, UpdateService>();
-
-
+            services.AddBot();
             services.AddCommands();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

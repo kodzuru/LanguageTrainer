@@ -18,6 +18,11 @@ namespace LanguageTrainer.Services
             services.AddDbContext<RepositoryContext>(x => x.UseSqlServer(connectionString, y => y.MigrationsAssembly(assemblyName)));
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
+        public static void AddBot(this IServiceCollection services)
+        {
+            services.AddSingleton<IBotService, BotService>();
+            services.AddScoped<IUpdateService, UpdateService>();
+        }
         public static void AddCommands(this IServiceCollection services)
         {
             services.AddTransient<ICommandWrapper, CommandWrapper>();
