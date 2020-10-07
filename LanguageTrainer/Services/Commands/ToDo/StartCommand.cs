@@ -38,9 +38,9 @@ namespace LanguageTrainer.Services.Commands.ToDo
 
             var userDTO = Mapper.Map<Message, CreateOrUpdateUserDTO>(message);
             var user = Mapper.Map<LanguageTrainer.Entities.Models.User>(userDTO);
-            //var userExist = Repository.UserRepository.FindByCondition(x => x.TelegramChatId.Equals(user.TelegramChatId)).FirstOrDefault();
-            //if (userExist == null)
-            //{
+            var userExist = Repository.UserRepository.FindByCondition(x => x.TelegramChatId.Equals(user.TelegramChatId)).FirstOrDefault();
+            if (userExist == null)
+            {
                 Repository.UserRepository.Create(user);
                 Repository.Save();
                 await client.SendTextMessageAsync(
@@ -48,25 +48,26 @@ namespace LanguageTrainer.Services.Commands.ToDo
                     text: "registration SUCCESSFULL",
                     replyToMessageId: message.MessageId
                 );
-            //}
-            //else
-            //{
-            //    Repository.UserRepository.Update(user);
-            //    Repository.Save();
-            //    await client.SendTextMessageAsync(
-            //        chatId: message.Chat.Id,
-            //         text: "User already exist, restoration successfull",
-            //        replyToMessageId: message.MessageId
-            //    );
-            //}
+            }
+            else
+            {
+                Mapper.Map<CreateOrUpdateUserDTO, LanguageTrainer.Entities.Models.User>(userDTO, userExist);
+                Repository.UserRepository.Update(userExist);
+                Repository.Save();
+                await client.SendTextMessageAsync(
+                    chatId: message.Chat.Id,
+                     text: "User already exist, restoration successfull",
+                    replyToMessageId: message.MessageId
+                );
+            }
         }
         async void SendReplyKeyboard(long id, ITelegramBotClient client)
         {
             var replyKeyboardMarkup = new ReplyKeyboardMarkup(
                 new KeyboardButton[][]
                 {
-                        new KeyboardButton[] { $"com1", "com2" },
-                        new KeyboardButton[] { "com3", $"com4"},
+                        new KeyboardButton[] { "com1", "com2" },
+                        new KeyboardButton[] { "com3", "com4"},
                 },
                 resizeKeyboard: true
             );
