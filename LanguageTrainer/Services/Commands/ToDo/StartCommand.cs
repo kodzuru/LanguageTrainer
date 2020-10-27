@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LanguageTrainer.Contracts;
 using LanguageTrainer.Entities.DTO;
+using LanguageTrainer.Services.TelegramBot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -66,7 +67,7 @@ namespace LanguageTrainer.Services.Commands.ToDo
             var replyKeyboardMarkup = new ReplyKeyboardMarkup(
                 new KeyboardButton[][]
                 {
-                        new KeyboardButton[] { "com1", "com2" },
+                        new KeyboardButton[] { $"{BotSettings.KeyboardCommands.GetWords}", "com2" },
                         new KeyboardButton[] { "com3", "com4"},
                 },
                 resizeKeyboard: true
