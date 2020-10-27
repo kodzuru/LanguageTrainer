@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguageTrainer.Entities.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20201027142054_Init")]
+    [Migration("20201027144248_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,9 @@ namespace LanguageTrainer.Entities.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<long>("Name")
-                        .HasColumnType("bigint")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.HasKey("Id");

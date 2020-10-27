@@ -32,8 +32,9 @@ namespace LanguageTrainer.Entities.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<long>("Name")
-                        .HasColumnType("bigint")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.HasKey("Id");

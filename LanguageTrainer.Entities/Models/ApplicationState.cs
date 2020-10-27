@@ -14,7 +14,7 @@ namespace LanguageTrainer.Entities.Models
 
         [Required(ErrorMessage = "Name is required")]
         [MaxLength(20)]
-        public long Name { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Description is required")]
         [MaxLength(1000)]
