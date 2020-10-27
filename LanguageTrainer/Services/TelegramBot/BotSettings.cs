@@ -11,7 +11,7 @@
 
         public static class KeyboardCommands
         {
-            public static string GetWords { get; set; } = "😀 GetWords";
+            public static string SetWordsGettingState { get; set; } = "😀 GetWordsState";
         }
         public static class InlineCommands
         {

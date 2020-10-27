@@ -67,7 +67,7 @@ namespace LanguageTrainer.Services.Commands.ToDo
             var replyKeyboardMarkup = new ReplyKeyboardMarkup(
                 new KeyboardButton[][]
                 {
-                        new KeyboardButton[] { $"{BotSettings.KeyboardCommands.GetWords}", "com2" },
+                        new KeyboardButton[] { $"{BotSettings.KeyboardCommands.SetWordsGettingState}", "com2" },
                         new KeyboardButton[] { "com3", "com4"},
                 },
                 resizeKeyboard: true
