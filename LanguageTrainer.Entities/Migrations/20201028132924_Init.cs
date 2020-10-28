@@ -72,8 +72,7 @@ namespace LanguageTrainer.Entities.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_User2ApplicationStates_UserId",
                 table: "User2ApplicationStates",
-                column: "UserId",
-                unique: true);
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

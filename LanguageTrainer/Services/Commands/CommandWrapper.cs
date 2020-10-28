@@ -37,6 +37,13 @@ namespace LanguageTrainer.Services.Commands
                     CommandResponsibility = CommandResponsibility.Inline
                 }, RepositoryWrapper, Mapper
             ));
+            Commands.Add(new InsertWordsCommand(
+                new CommandInfo()
+                {
+                    Name = $"{BotSettings.KeyboardCommands.SetWordsGettingState} insert",
+                    CommandResponsibility = CommandResponsibility.Inline
+                }, RepositoryWrapper, Mapper
+            ));
         }
     }
 }

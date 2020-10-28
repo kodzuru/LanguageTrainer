@@ -85,7 +85,6 @@ namespace LanguageTrainer.Services.Commands.ToDo
                     replyToMessageId: message.MessageId
                 );
             }
-
         }
         async void SendReplyKeyboard(long id, ITelegramBotClient client)
         {

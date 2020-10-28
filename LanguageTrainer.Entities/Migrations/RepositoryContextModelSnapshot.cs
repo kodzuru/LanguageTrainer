@@ -90,8 +90,7 @@ namespace LanguageTrainer.Entities.Migrations
 
                     b.HasIndex("ApplicationStateId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("User2ApplicationStates");
                 });
@@ -105,8 +104,8 @@ namespace LanguageTrainer.Entities.Migrations
                         .IsRequired();
 
                     b.HasOne("LanguageTrainer.Entities.Models.User", "User")
-                        .WithOne("User2ApplicationState")
-                        .HasForeignKey("LanguageTrainer.Entities.Models.User2ApplicationState", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

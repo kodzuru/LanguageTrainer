@@ -6,4 +6,4 @@ go
 
 
 delete  from User2ApplicationStates
-delete from Users
+delete from Users 
