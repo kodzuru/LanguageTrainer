@@ -1,4 +1,5 @@
 ﻿using LanguageTrainer.Services.Commands;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -22,6 +23,15 @@ namespace LanguageTrainer.Services.TelegramBot
                 return;
 
             var message = update.Message;
+
+            Debug.WriteLine($"Received a text message in chat {message.Chat.Id}.{message.Text}" +
+            $"FirstName: {message.Chat.FirstName}" +
+            $"LastName: {message.Chat.LastName}" +
+            $"ChatId: {message.Chat.Id}" +
+            $"Date: {message.Date}" +
+            $"From.FirstName: {message.From.FirstName}" +
+            $"From.LastName: {message.From.LastName}" +
+            $"From.Id: {message.From.Id}");
 
             switch (message.Type)
             {

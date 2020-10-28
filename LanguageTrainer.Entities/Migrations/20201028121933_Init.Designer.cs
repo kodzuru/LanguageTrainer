@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguageTrainer.Entities.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20201027144248_Init")]
+    [Migration("20201028121933_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,8 +90,7 @@ namespace LanguageTrainer.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationStateId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationStateId");
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -102,8 +101,8 @@ namespace LanguageTrainer.Entities.Migrations
             modelBuilder.Entity("LanguageTrainer.Entities.Models.User2ApplicationState", b =>
                 {
                     b.HasOne("LanguageTrainer.Entities.Models.ApplicationState", "ApplicationState")
-                        .WithOne("User2ApplicationState")
-                        .HasForeignKey("LanguageTrainer.Entities.Models.User2ApplicationState", "ApplicationStateId")
+                        .WithMany()
+                        .HasForeignKey("ApplicationStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

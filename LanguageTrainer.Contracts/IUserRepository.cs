@@ -4,6 +4,5 @@ namespace LanguageTrainer.Contracts
 {
     public interface IUserRepository : IRepositoryBase<User>
     {
-
     }
 }

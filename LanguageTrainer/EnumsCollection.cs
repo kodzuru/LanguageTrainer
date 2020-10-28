@@ -12,5 +12,14 @@ namespace LanguageTrainer
             Keyboard,
             Inline
         }
+        public enum ApplicationState : byte
+        {
+            NOT_REGISTRATED = 1,
+            STARTED,
+            RESTARTED,
+            INSERTING_WORDS,
+            TRAINING_WORDS,
+            OPTIONS
+        }
     }
 }

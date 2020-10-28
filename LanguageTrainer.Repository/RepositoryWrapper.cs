@@ -20,6 +20,34 @@ namespace LanguageTrainer.Repository
             }
         }
 
+
+        private IUser2ApplicationState user2ApplicationState;
+        public IUser2ApplicationState User2ApplicationState
+        {
+            get
+            {
+                if (user2ApplicationState == null)
+                {
+                    user2ApplicationState = new User2ApplicationStateRepository(_context);
+                }
+                return user2ApplicationState;
+            }
+        }
+
+
+        private IApplicationStateRepository applicationStateRepository;
+        public IApplicationStateRepository ApplicationStateRepository
+        {
+            get
+            {
+                if (applicationStateRepository == null)
+                {
+                    applicationStateRepository = new ApplicationStateRepository (_context);
+                }
+                return applicationStateRepository;
+            }
+        }
+
         public RepositoryWrapper(RepositoryContext repositoryContext)
         {
             _context = repositoryContext;

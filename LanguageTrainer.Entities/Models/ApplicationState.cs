@@ -19,7 +19,5 @@ namespace LanguageTrainer.Entities.Models
         [Required(ErrorMessage = "Description is required")]
         [MaxLength(1000)]
         public string Description { get; set; }
-
-        public virtual User2ApplicationState User2ApplicationState { get; set; }
     }
 }

@@ -88,8 +88,7 @@ namespace LanguageTrainer.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationStateId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationStateId");
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -100,8 +99,8 @@ namespace LanguageTrainer.Entities.Migrations
             modelBuilder.Entity("LanguageTrainer.Entities.Models.User2ApplicationState", b =>
                 {
                     b.HasOne("LanguageTrainer.Entities.Models.ApplicationState", "ApplicationState")
-                        .WithOne("User2ApplicationState")
-                        .HasForeignKey("LanguageTrainer.Entities.Models.User2ApplicationState", "ApplicationStateId")
+                        .WithMany()
+                        .HasForeignKey("ApplicationStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

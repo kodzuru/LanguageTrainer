@@ -26,7 +26,6 @@ namespace LanguageTrainer.Entities.Models
 
         [Column(TypeName = "DateTime2")]
         public DateTime StartDateTime { get; set; }
-
         public virtual User2ApplicationState User2ApplicationState { get; set; }
     }
 }
